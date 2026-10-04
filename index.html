@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narayani Girls Hostel | Safe & Secure Accommodation in Bihar</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Built-in Mobile App Manifest (Forces the Install Option) -->
+    <link rel="manifest" href='data:application/manifest+json;charset=utf-8,{"name":"Narayani Girls Hostel","short_name":"Narayani Hostel","start_url":"/","display":"standalone","background_color":"%23030712","theme_color":"%23d81b60","icons":[{"src":"https://lh3.googleusercontent.com/d/1Tgls_67wNChfH1Nb4xLxXsCDPpd8xI4e","sizes":"192x192","type":"image/png"},{"src":"https://lh3.googleusercontent.com/d/1Tgls_67wNChfH1Nb4xLxXsCDPpd8xI4e","sizes":"512x512","type":"image/png"}]}'>
+
+    <!-- Web App Capabilities -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Narayani Hostel">
+    <meta name="theme-color" content="#d81b60">
+    <link rel="apple-touch-icon" href="https://lh3.googleusercontent.com/d/1Tgls_67wNChfH1Nb4xLxXsCDPpd8xI4e">
+
+    <style>
+        body {
+            background-color: #030712;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(216, 27, 96, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(147, 51, 234, 0.1) 0px, transparent 50%);
+            color: #f3f4f6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .glass-card {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Page Display Control */
+        .page-section { display: none !important; }
+        .page-section.active-page { display: block !important; animation: fadeIn 0.4s ease-in-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden selection:bg-pink-600 selection:text-white">
+
+    <!-- Top Announcement Banner -->
+    <div class="bg-gradient-to-r from-pink-700 to-purple-800 text-white text-center py-2.5 px-4 text-xs md:text-sm font-semibold tracking-wider shadow-inner">
+        🎉 Admissions Open for 2026-2027 Session! Limited Rooms Available. Secure Your Spot Today!
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 glass-card border-b border-white/10 shadow-lg">
+        <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-3.5">
+            <div class="flex items-center gap-3 cursor-pointer group" onclick="switchPage('home')">
+                <img src="https://lh3.googleusercontent.com/d/1Tgls_67wNChfH1Nb4xLxXsCDPpd8xI4e" alt="Narayani Logo" class="h-10 w-10 object-contain rounded-full border border-pink-500/40 bg-white">
+                <span class="text-lg md:text-xl font-extrabold tracking-wide bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent group-hover:opacity-95 transition">
+                    Narayani Girls Hostel
+                </span>
+            </div>
+            <nav>
+                <ul class="flex items-center gap-1 md:gap-3 list-none flex-wrap">
+                    <li><a id="nav-home" class="nav-link cursor-pointer px-3 py-1.5 md:px-3.5 md:py-2 rounded-full text-xs md:text-sm font-semibold transition text-pink-400 bg-pink-500/10 border border-pink-500/30" onclick="switchPage('home')">Home</a></li>
+                    <li><a id="nav-rooms" class="nav-link cursor-pointer px-3 py-1.5 md:px-3.5 md:py-2 rounded-full text-xs md:text-sm font-semibold transition text-gray-300 hover:text-pink-400 hover:bg-white/5" onclick="switchPage('rooms')">Rooms</a></li>
+                    <li><a id="nav-rules" class="nav-link cursor-pointer px-3 py-1.5 md:px-3.5 md:py-2 rounded-full text-xs md:text-sm font-semibold transition text-gray-300 hover:text-pink-400 hover:bg-white/5" onclick="switchPage('rules')">Rules</a></li>
+                    <li><a id="nav-attendance" class="nav-link cursor-pointer px-3 py-1.5 md:px-3.5 md:py-2 rounded-full text-xs md:text-sm font-semibold transition text-gray-300 hover:text-pink-400 hover:bg-white/5" onclick="switchPage('attendance')">Gate Register</a></li>
+                    <li><a id="nav-contact" class="nav-link cursor-pointer px-3 py-1.5 md:px-3.5 md:py-2 rounded-full text-xs md:text-sm font-semibold transition text-gray-300 hover:text-pink-400 hover:bg-white/5" onclick="switchPage('contact')">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/+916209185085" class="fixed w-14 h-14 bottom-8 right-8 bg-[#25d366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_4px_20px_rgba(37,211,102,0.5)] z-[1000] hover:scale-110 transition duration-300" target="_blank" title="Chat with us on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- 1. HOME PAGE SECTION -->
+    <div id="page-home" class="page-section active-page">
+        <!-- Hero Section -->
+        <header class="relative pt-28 pb-20 md:pt-36 md:pb-28 px-6 text-center max-w-5xl mx-auto">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-600/15 blur-[130px] rounded-full pointer-events-none"></div>
+            
+            <div data-aos="fade-down" class="inline-block mb-4 px-4 py-1.5 rounded-full glass-card text-pink-400 text-xs font-semibold tracking-wider uppercase border border-pink-500/30">
+                ✨ Safe & Secure Living Space
+            </div>
+            
+            <h1 data-aos="fade-up" data-aos-delay="100" class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                Your <span class="bg-gradient-to-r from-pink-400 via-rose-300 to-purple-400 bg-clip-text text-transparent">Home Away From Home</span>
+            </h1>
+            
+            <p data-aos="fade-up" data-aos-delay="200" class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+                Safe, secure, and premium accommodation designed especially for female students and working professionals in Bihar.
+            </p>
+            
+            <div data-aos="fade-up" data-aos-delay="300" class="flex justify-center">
+                <button onclick="switchPage('rooms')" class="bg-gradient-to-r from-pink-600 to-rose-600 text-white font-bold px-8 py-3.5 rounded-xl hover:opacity-90 transition duration-300 shadow-[0_0_20px_rgba(216,27,96,0.4)] cursor-pointer">
+                    Explore Rooms & Pricing
+                </button>
+            </div>
+        </header>
+
+        <!-- Features Grid -->
+        <div class="max-w-6xl mx-auto px-6 pb-24">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-3">Why Choose Our Facilities?</h2>
+                <p class="text-gray-400 text-sm md:text-base">Everything you need for a hassle-free stay under one roof.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div data-aos="fade-up" data-aos-delay="100" class="glass-card p-8 rounded-2xl hover:border-pink-500/50 transition duration-500 group">
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-400 mb-6 group-hover:scale-110 transition duration-300 text-xl">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">24/7 Security</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">CCTV monitoring in common zones, secure main gate entry, and digital attendance tracking.</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="200" class="glass-card p-8 rounded-2xl hover:border-pink-500/50 transition duration-500 group">
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-400 mb-6 group-hover:scale-110 transition duration-300 text-xl">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Hygienic Mess</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Delicious, home-style vegetarian and non-vegetarian meals prepared in a spotless kitchen daily.</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="300" class="glass-card p-8 rounded-2xl hover:border-pink-500/50 transition duration-500 group">
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-400 mb-6 group-hover:scale-110 transition duration-300 text-xl">
+                        <i class="fa-solid fa-wifi"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">High-Speed Wi-Fi</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Uninterrupted internet connection across the property to support your online lectures and study needs.</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="100" class="glass-card p-8 rounded-2xl hover:border-pink-500/50 transition duration-500 group">
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-400 mb-6 group-hover:scale-110 transition duration-300 text-xl">
+                        <i class="fa-solid fa-bed"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Comfortable Rooms</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Well-ventilated clean rooms equipped with cozy beds, personal study tables, and lockable storage.</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="200" class="glass-card p-8 rounded-2xl hover:border-pink-500/50 transition duration-500 group">
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-400 mb-6 group-hover:scale-110 transition duration-300 text-xl">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Power Backup</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Reliable backup power support ensuring lighting and fan availability during unexpected blackouts.</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="300" class="glass-card p-8 rounded-2xl hover:border-pink-500/50 transition duration-500 group">
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-400 mb-6 group-hover:scale-110 transition duration-300 text-xl">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">RO Drinking Water</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Safe, cold, and purified drinking water filters accessible easily on every floor.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. ROOMS PAGE SECTION -->
+    <div id="page-rooms" class="page-section">
+        <div class="max-w-6xl mx-auto px-6 py-20">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-3">Room Options & Pricing</h2>
+                <p class="text-gray-400">Transparent pricing with zero hidden fees. Mess and Wi-Fi included!</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Single Sharing -->
+                <div data-aos="fade-up" data-aos-delay="100" class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between border border-white/10 hover:border-pink-500/50 transition duration-300">
+                    <div>
+                        <div class="bg-gradient-to-r from-pink-600 to-rose-600 text-white p-6 text-center text-xl font-bold">Single Sharing</div>
+                        <div class="text-3xl md:text-4xl font-extrabold text-center my-6 text-white">₹6,000 <span class="text-xs text-gray-400 font-normal">/ month</span></div>
+                        <ul class="space-y-4 px-6 text-gray-300 text-sm mb-8">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Private Personal Room</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Attached Bed & Study Table</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Personal Wardrobe & Locker</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Daily Mess Facility Included</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> High-Speed Wi-Fi Access</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="switchPage('contact')" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded-xl transition duration-300 shadow-md cursor-pointer">Book / Inquire</button>
+                    </div>
+                </div>
+
+                <!-- Double Sharing -->
+                <div data-aos="fade-up" data-aos-delay="200" class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between border border-pink-500/40 hover:border-pink-500 transition duration-300 shadow-[0_0_25px_rgba(216,27,96,0.15)]">
+                    <div>
+                        <div class="bg-gradient-to-r from-pink-600 to-purple-600 text-white p-6 text-center text-xl font-bold">Double Sharing</div>
+                        <div class="text-3xl md:text-4xl font-extrabold text-center my-6 text-white">₹5,500 <span class="text-xs text-gray-400 font-normal">/ month</span></div>
+                        <ul class="space-y-4 px-6 text-gray-300 text-sm mb-8">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> 2 Beds per Room Setup</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Individual Study Desks</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Individual Personal Lockers</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Daily Mess Facility Included</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> High-Speed Wi-Fi Access</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="switchPage('contact')" class="w-full bg-gradient-to-r from-pink-600 to-purple-600 hover:opacity-90 text-white font-bold py-3 rounded-xl transition duration-300 shadow-md cursor-pointer">Book / Inquire</button>
+                    </div>
+                </div>
+
+                <!-- Triple Sharing -->
+                <div data-aos="fade-up" data-aos-delay="300" class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between border border-white/10 hover:border-pink-500/50 transition duration-300">
+                    <div>
+                        <div class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-6 text-center text-xl font-bold">Triple Sharing</div>
+                        <div class="text-3xl md:text-4xl font-extrabold text-center my-6 text-white">₹5,000 <span class="text-xs text-gray-400 font-normal">/ month</span></div>
+                        <ul class="space-y-4 px-6 text-gray-300 text-sm mb-8">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> 3 Beds per Room Setup</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Spacious & Airy Layout</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Individual Personal Lockers</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Daily Mess Facility Included</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> High-Speed Wi-Fi Access</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="switchPage('contact')" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-xl transition duration-300 shadow-md cursor-pointer">Book / Inquire</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. RULES PAGE SECTION -->
+    <div id="page-rules" class="page-section">
+        <div class="max-w-4xl mx-auto px-6 py-20">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-3">Hostel Rules & Regulations</h2>
+                <p class="text-gray-400">We maintain a structured and disciplined ecosystem for everyone's safety.</p>
+            </div>
+            
+            <div data-aos="fade-up" class="glass-card p-8 md:p-12 rounded-2xl border-l-4 border-pink-600">
+                <ul class="space-y-6 text-gray-300 text-sm md:text-base">
+                    <li class="flex items-start gap-4 pb-4 border-b border-white/5"><i class="fa-solid fa-circle-chevron-right text-pink-500 mt-1"></i> Entry gate curfew timings must be strictly followed (Evening restriction by 8:00 PM).</li>
+                    <li class="flex items-start gap-4 pb-4 border-b border-white/5"><i class="fa-solid fa-circle-chevron-right text-pink-500 mt-1"></i> Visitors and family members are permitted exclusively in the reception area during visiting hours.</li>
+                    <li class="flex items-start gap-4 pb-4 border-b border-white/5"><i class="fa-solid fa-circle-chevron-right text-pink-500 mt-1"></i> Maintaining basic cleanliness and hygiene within personal rooms and common areas is mandatory.</li>
+                    <li class="flex items-start gap-4 pb-4 border-b border-white/5"><i class="fa-solid fa-circle-chevron-right text-pink-500 mt-1"></i> Strictly zero-tolerance policy for smoking, alcohol consumption, or prohibited substances on the premises.</li>
+                    <li class="flex items-start gap-4 pb-4 border-b border-white/5"><i class="fa-solid fa-circle-chevron-right text-pink-500 mt-1"></i> A prior notice of at least 15 days is mandatory before vacating your room.</li>
+                    <li class="flex items-start gap-4"><i class="fa-solid fa-circle-chevron-right text-pink-500 mt-1"></i> Lights and fans must be turned off when leaving the room to ensure efficient energy conservation.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. GATE REGISTER / ATTENDANCE SECTION -->
+    <div id="page-attendance" class="page-section">
+        <div class="max-w-4xl mx-auto px-6 py-20">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-3">Student Gate Register</h2>
+                <p class="text-gray-400">Official In / Out movement log for hostel security tracking.</p>
+            </div>
+            
+            <div data-aos="fade-up" class="glass-card p-6 md:p-10 rounded-2xl mb-10">
+                <div class="bg-pink-500/10 border-l-4 border-pink-500 p-4 mb-6 rounded-r-lg text-sm text-pink-300 flex items-start gap-3">
+                    <i class="fa-solid fa-circle-info text-pink-400 mt-0.5 text-lg"></i>
+                    <div><strong>Notice for Students:</strong> Whenever you leave the premises or return, please fill out the form below. Your entry updates automatically in the Google Sheet register!</div>
+                </div>
+                
+                <form id="gateRegisterForm" class="space-y-4">
+                    <div>
+                        <label for="student-name" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Student Full Name</label>
+                        <input type="text" id="student-name" name="studentName" placeholder="e.g. Priya Kumari" required class="w-full bg-gray-900/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-pink-500 transition">
+                    </div>
+                    <div>
+                        <label for="room-number" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Room Number</label>
+                        <input type="text" id="room-number" name="roomNumber" placeholder="e.g. Room No. 04" required class="w-full bg-gray-900/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-pink-500 transition">
+                    </div>
+                    <div>
+                        <label for="status-type" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Movement Status</label>
+                        <select id="status-type" name="status" required class="w-full bg-gray-900/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-pink-500 transition">
+                            <option value="" class="bg-gray-900">Select status</option>
+                            <option value="Going Out" class="bg-gray-900">Going Out (Coaching / Market)</option>
+                            <option value="Returning In" class="bg-gray-900">Returning Back to Hostel</option>
+                            <option value="Going Home for Days" class="bg-gray-900">Going Home (Leave)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="return-time" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Expected Return Time / Date</label>
+                        <input type="text" id="return-time" name="returnTime" placeholder="e.g. Today by 7:00 PM" required class="w-full bg-gray-900/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-pink-500 transition">
+                    </div>
+                    <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-pink-600 to-rose-600 hover:opacity-90 text-white font-bold py-3.5 rounded-xl transition duration-300 shadow-md cursor-pointer">Submit Movement Log</button>
+                </form>
+            </div>
+
+            <!-- Live Feed Table pulled from Google Sheet -->
+            <div data-aos="fade-up" class="glass-card p-6 md:p-8 rounded-2xl">
+                <h3 class="text-xl font-bold text-pink-400 mb-4 flex items-center gap-2"><i class="fa-solid fa-clock-rotate-left"></i> Live Movement Logs Feed</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-gray-300 border-collapse">
+                        <thead>
+                            <tr class="border-b border-white/10 bg-pink-500/10 text-pink-400">
+                                <th class="p-3">Time</th>
+                                <th class="p-3">Student Name</th>
+                                <th class="p-3">Room</th>
+                                <th class="p-3">Status</th>
+                                <th class="p-3">Return Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="liveLogTableBody">
+                            <tr>
+                                <td colspan="5" class="text-center p-4 text-gray-400">Loading recent logs from Google Sheet...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. CONTACT PAGE SECTION -->
+    <div id="page-contact" class="page-section">
+        <div class="max-w-5xl mx-auto px-6 py-20">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-3">Contact & Booking Inquiry</h2>
+                <p class="text-gray-400">Have questions? Drop us a message or give us a call directly!</p>
+            </div>
+            
+            <div data-aos="fade-up" class="glass-card p-8 md:p-12 rounded-2xl grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div>
+                    <h3 class="text-2xl font-bold text-pink-400 mb-4">Get in Touch</h3>
+                    <p class="text-gray-300 text-sm mb-6 leading-relaxed">We are happy to answer all your inquiries regarding room status and admission procedures.</p>
+                    
+                    <div class="space-y-4 text-sm text-gray-300">
+                        <p class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-pink-500"></i> <strong>Location:</strong> Bihar, India</p>
+                        <p class="flex items-center gap-3"><i class="fa-solid fa-phone text-pink-500"></i> <strong>Phone 1:</strong> <a href="tel:6209185085" class="text-pink-400 hover:underline">6209185085</a></p>
+                        <p class="flex items-center gap-3"><i class="fa-solid fa-phone text-pink-500"></i> <strong>Phone 2:</strong> <a href="tel:7352265889" class="text-pink-400 hover:underline">7352265889</a></p>
+                        <p class="flex items-center gap-3"><i class="fa-solid fa-envelope text-pink-500"></i> <strong>Email:</strong> info@narayanihostel.com</p>
+                    </div>
+
+                    <div class="mt-8 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-gray-400 flex items-center gap-3">
+                        <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i>
+                        <span>You can also click the floating WhatsApp icon on the screen to talk instantly!</span>
+                    </div>
+                </div>
+
+                <div>
+                    <form onsubmit="event.preventDefault(); alert('Inquiry submitted successfully! We will contact you soon.');" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Your Full Name</label>
+                            <input type="text" id="name" placeholder="Enter your full name" required class="w-full bg-gray-900/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-pink-500 transition">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Mobile Number</label>
+                            <input type="tel" id="phone" placeholder="Enter your mobile number" required class="w-full bg-gray-900/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-pink-500 transition">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Message / Room Preference</label>
+                            <textarea id="message" placeholder="Mention preferred room type or ask any questions..." class="w-full bg-gray-900/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-pink-500 transition h-28 resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-pink-600 to-rose-600 hover:opacity-90 text-white font-bold py-3.5 rounded-xl transition duration-300 shadow-md cursor-pointer">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="glass-card border-t border-white/10 text-center py-8 text-gray-400 text-xs tracking-wider mt-20">
+        <p>&copy; 2026 Narayani Girls Hostel. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Page Switching, Animations, and SheetDB Integration -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Scroll Animations
+        AOS.init({
+            once: true,
+            offset: 40,
+        });
+
+        function switchPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active-page');
+            });
+            // Reset nav links styling
+            document.querySelectorAll('nav a').forEach(link => {
+                link.className = "nav-link cursor-pointer px-3.5 py-2 rounded-full text-sm font-semibold transition text-gray-300 hover:text-pink-400 hover:bg-white/5";
+            });
+            // Show selected page correctly
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.add('active-page');
+            }
+            
+            // Highlight active nav link with glowing effect
+            const activeLink = document.getElementById('nav-' + pageId);
+            if (activeLink) {
+                activeLink.className = "nav-link cursor-pointer px-3.5 py-2 rounded-full text-sm font-semibold transition text-pink-400 bg-pink-500/10 border border-pink-500/30";
+            }
+            
+            // Scroll back to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Fetch logs if attendance page is opened
+            if (pageId === 'attendance') {
+                fetchLiveLogs();
+            }
+        }
+
+        // Active SheetDB API URL
+        const sheetDbUrl = 'https://sheetdb.io/api/v1/ov2xo6qmivkld';
+        const form = document.getElementById('gateRegisterForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Form Submission to SheetDB
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            const nameVal = document.getElementById('student-name').value;
+            const roomVal = document.getElementById('room-number').value;
+            const statusVal = document.getElementById('status-type').value;
+            const returnVal = document.getElementById('return-time').value;
+
+            if (!nameVal || !roomVal || !statusVal || !returnVal) {
+                alert('Please fill out all fields before submitting.');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Submitting...';
+
+            const formData = {
+                data: [
+                    {
+                        "Timestamp": new Date().toLocaleString(),
+                        "Student Name": nameVal,
+                        "Room Number": roomVal,
+                        "Status": statusVal,
+                        "Expected Return": returnVal
+                    }
+                ]
+            };
+
+            fetch(sheetDbUrl, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Gate movement logged successfully!');
+                form.reset();
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'Submit Movement Log';
+                fetchLiveLogs();
+            })
+            .catch(error => {
+                console.error('Error!', error);
+                alert('Something went wrong. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'Submit Movement Log';
+            });
+        });
+
+        // Function to load live logs into the table
+        function fetchLiveLogs() {
+            const tableBody = document.getElementById('liveLogTableBody');
+            
+            fetch(sheetDbUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (!data || data.length === 0) {
+                        tableBody.innerHTML = `<tr><td colspan="5" class="text-center p-4 text-gray-400">No logs recorded yet.</td></tr>`;
+                        return;
+                    }
+
+                    const recentRows = data.reverse().slice(0, 5);
+                    let rowsHtml = '';
+
+                    recentRows.forEach(row => {
+                        const keys = Object.keys(row);
+                        const timeVal = row[keys[0]] || 'N/A';
+                        const nameVal = row[keys[1]] || 'N/A';
+                        const roomVal = row[keys[2]] || 'N/A';
+                        const statusVal = row[keys[3]] || 'N/A';
+                        const returnVal = row[keys[4]] || 'N/A';
+
+                        rowsHtml += `
+                            <tr class="border-b border-white/5 hover:bg-white/5 transition">
+                                <td class="p-3 text-xs text-gray-400">${timeVal}</td>
+                                <td class="p-3 font-bold text-white">${nameVal}</td>
+                                <td class="p-3">${roomVal}</td>
+                                <td class="p-3 text-pink-400 font-semibold">${statusVal}</td>
+                                <td class="p-3">${returnVal}</td>
+                            </tr>
+                        `;
+                    });
+
+                    tableBody.innerHTML = rowsHtml;
+                })
+                .catch(err => {
+                    console.error('Failed to load logs', err);
+                    tableBody.innerHTML = `<tr><td colspan="5" class="text-center p-4 text-red-400">Could not fetch live logs from Google Sheet.</td></tr>`;
+                });
+        }
+    </script>
+</body>
+</html>

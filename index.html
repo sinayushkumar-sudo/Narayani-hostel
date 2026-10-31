@@ -11,8 +11,8 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Built-in Mobile App Manifest (Forces the Install Option) -->
-    <link rel="manifest" href='data:application/manifest+json;charset=utf-8,{"name":"Narayani Girls Hostel","short_name":"Narayani Hostel","start_url":"/","display":"standalone","background_color":"%23030712","theme_color":"%23d81b60","icons":[{"src":"https://lh3.googleusercontent.com/d/1Tgls_67wNChfH1Nb4xLxXsCDPpd8xI4e","sizes":"192x192","type":"image/png"},{"src":"https://lh3.googleusercontent.com/d/1Tgls_67wNChfH1Nb4xLxXsCDPpd8xI4e","sizes":"512x512","type":"image/png"}]}'>
+    <!-- PWA Manifest Link -->
+    <link rel="manifest" href="manifest.json">
 
     <!-- Web App Capabilities -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -26,10 +26,11 @@
         body {
             background-color: #030712;
             background-image: 
-                radial-gradient(at 0% 0%, rgba(216, 27, 96, 0.1) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(147, 51, 234, 0.1) 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(216, 27, 96, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(147, 51, 234, 0.15) 0px, transparent 50%);
             color: #f3f4f6;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            perspective: 1200px; /* 3D Depth */
         }
         
         .glass-card {
@@ -37,6 +38,13 @@
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 3D Tilt Wrapper Effect */
+        .card-3d-wrapper {
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
         }
 
         /* Page Display Control */
@@ -52,8 +60,11 @@
 <body class="min-h-screen overflow-x-hidden selection:bg-pink-600 selection:text-white">
 
     <!-- Top Announcement Banner -->
-    <div class="bg-gradient-to-r from-pink-700 to-purple-800 text-white text-center py-2.5 px-4 text-xs md:text-sm font-semibold tracking-wider shadow-inner">
-        🎉 Admissions Open for 2026-2027 Session! Limited Rooms Available. Secure Your Spot Today!
+    <div class="bg-gradient-to-r from-pink-700 to-purple-800 text-white text-center py-2.5 px-6 text-xs md:text-sm font-semibold tracking-wider shadow-inner flex justify-between items-center">
+        <span>🎉 Admissions Open for 2026-2027 Session! Secure Your Spot Today!</span>
+        <button id="installAppBtn" class="hidden bg-white text-pink-700 px-3 py-1 rounded-lg text-xs font-bold shadow hover:bg-gray-100 transition cursor-pointer">
+            📲 Install App
+        </button>
     </div>
 
     <!-- Navigation Bar -->
@@ -84,12 +95,12 @@
 
     <!-- 1. HOME PAGE SECTION -->
     <div id="page-home" class="page-section active-page">
-        <!-- Hero Section -->
-        <header class="relative pt-28 pb-20 md:pt-36 md:pb-28 px-6 text-center max-w-5xl mx-auto">
+        <!-- Hero Section with 3D Wrapper -->
+        <header class="relative pt-28 pb-20 md:pt-36 md:pb-28 px-6 text-center max-w-5xl mx-auto card-3d-wrapper" id="hero3D">
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-600/15 blur-[130px] rounded-full pointer-events-none"></div>
             
             <div data-aos="fade-down" class="inline-block mb-4 px-4 py-1.5 rounded-full glass-card text-pink-400 text-xs font-semibold tracking-wider uppercase border border-pink-500/30">
-                ✨ Safe & Secure Living Space
+                ✨ Safe & Secure Living Space in Bihar
             </div>
             
             <h1 data-aos="fade-up" data-aos-delay="100" class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
@@ -97,7 +108,7 @@
             </h1>
             
             <p data-aos="fade-up" data-aos-delay="200" class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                Safe, secure, and premium accommodation designed especially for female students and working professionals in Bihar.
+                Safe, secure, and premium accommodation designed especially for female students and working professionals.
             </p>
             
             <div data-aos="fade-up" data-aos-delay="300" class="flex justify-center">
@@ -334,7 +345,7 @@
                     <div class="space-y-4 text-sm text-gray-300">
                         <p class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-pink-500"></i> <strong>Location:</strong> Bihar, India</p>
                         <p class="flex items-center gap-3"><i class="fa-solid fa-phone text-pink-500"></i> <strong>Phone 1:</strong> <a href="tel:6209185085" class="text-pink-400 hover:underline">6209185085</a></p>
-                        <p class="flex items-center gap-3"><i class="fa-solid fa-phone text-pink-500"></i> <strong>Phone 2:</strong> <a href="tel:6204686057" class="text-pink-400 hover:underline">6204686057</a></p>
+                        <p class="flex items-center gap-3"><i class="fa-solid fa-phone text-pink-500"></i> <strong>Phone 2:</strong> <a href="tel:7352265889" class="text-pink-400 hover:underline">7352265889</a></p>
                         <p class="flex items-center gap-3"><i class="fa-solid fa-envelope text-pink-500"></i> <strong>Email:</strong> info@narayanihostel.com</p>
                     </div>
 
@@ -370,13 +381,61 @@
         <p>&copy; 2026 Narayani Girls Hostel. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript for Page Switching, Animations, and SheetDB Integration -->
+    <!-- JavaScript for 3D Tilt, Page Switching, SheetDB & PWA Install Prompt -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // Initialize Scroll Animations
         AOS.init({
             once: true,
             offset: 40,
+        });
+
+        // 3D Tilt Effect on Desktop Mouse Move
+        const heroCard = document.getElementById('hero3D');
+        if (heroCard) {
+            document.addEventListener('mousemove', (e) => {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 35;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 35;
+                heroCard.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+            document.addEventListener('mouseleave', () => {
+                heroCard.style.transform = `rotateY(0deg) rotateX(0deg)`;
+                heroCard.style.transition = 'transform 0.5s ease-in-out';
+            });
+            document.addEventListener('mouseenter', () => {
+                heroCard.style.transition = 'none';
+            });
+        }
+
+        // Register Service Worker for PWA installation capability
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('ServiceWorker registered!', reg))
+                    .catch(err => console.log('ServiceWorker registration failed: ', err));
+            });
+        }
+
+        // Install prompt handler
+        let deferredPrompt;
+        const installBtn = document.getElementById('installAppBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.classList.remove('hidden'); // Show the install button in top banner
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                }
+                deferredPrompt = null;
+                installBtn.classList.add('hidden');
+            }
         });
 
         function switchPage(pageId) {

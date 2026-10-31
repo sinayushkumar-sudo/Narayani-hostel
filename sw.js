@@ -7,5 +7,9 @@ self.addEventListener('activate', (e) => {
 });
 
 self.addEventListener('fetch', (e) => {
-  // Fetch handler required for install prompt
+  e.respondWith(
+    caches.match(e.request).then((response) => {
+      return response || fetch(e.request);
+    })
+  );
 });
